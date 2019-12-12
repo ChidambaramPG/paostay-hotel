@@ -10,11 +10,22 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "core-js": "^2.6.5",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.2",
+    "core-js": "^2.6.9",
+    "firebase": "^6.6.1",
+    "jquery": "^3.4.1",
+    "popper": "^1.0.1",
+    "popper.js": "^1.15.0",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
+    "vue-burger-menu": "^2.0.3",
+    "vue-loading-overlay": "^3.2.0",
+    "vue-loading-spinner": "^1.0.11",
+    "vue-offcanvas": "0.0.3",
     "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "wovue-off-canvas": "^1.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
