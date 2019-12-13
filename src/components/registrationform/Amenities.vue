@@ -55,24 +55,24 @@ export default {
   },
   methods:{
     decrRegPage: function(){
-      console.log('decrementing');
+      // console.log('decrementing');
       if(this.regFormPage>1){
         this.$store.commit('SET_REG_FORM_STEP',4);
       }
       
     },
     incrRegPage: function(){
-      console.log('incrementing');
+      // console.log('incrementing');
       let amenityFields = {}
       let inputElems = document.getElementsByClassName('amenity-input');
-      // console.log(inputElems);
+      // // console.log(inputElems);
 
       for (var i = 0; i < inputElems.length; i++) {
-          console.log(inputElems[i].id)
+          // console.log(inputElems[i].id)
           amenityFields[inputElems[i].id] = {status:inputElems[i].checked };
       }
       
-      console.log(amenityFields);
+      // console.log(amenityFields);
 
       if(this.regFormPage<8){
         this.$store.commit('SET_REG_FORM_STEP',6);

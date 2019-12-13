@@ -9,6 +9,7 @@ import RegisterForm from "./views/RegistrationForm.vue";
 import Accomodation from "./views/Accomodation.vue";
 import Bookings from "./views/Bookings.vue";
 import Diary from "./views/Diary.vue";
+import Payments from './views/Payments.vue';
 
 Vue.use(Router);
 
@@ -77,6 +78,14 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: "/payments",
+      name: "payments",
+      component: Payments,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 });
 
@@ -85,10 +94,10 @@ router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const authCheck = await firebase.firestore().collection("HotelOwners").get().then( res => res.empty ? false: true)
   
-  console.log("<----------- BEFORE EACH ----------->");
-  console.log("current user: ", currentUser);
-  console.log("requires auth : ", requiresAuth);
-  console.log("auth check",authCheck)
+  // console.log("<----------- BEFORE EACH ----------->");
+  // console.log("current user: ", currentUser);
+  // console.log("requires auth : ", requiresAuth);
+  // console.log("auth check",authCheck)
 
   if (requiresAuth && !currentUser) next("signin");
   else if (!requiresAuth && currentUser ) next("dashboard");

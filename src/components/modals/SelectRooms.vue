@@ -66,7 +66,7 @@ export default {
 
     computed: {
         showModal() {
-            // console.log("rooms modal: ", this.$store.state.showRoomSelectionModal);
+            // // console.log("rooms modal: ", this.$store.state.showRoomSelectionModal);
             if (this.$store.state.showRoomSelectionModal) {
 
                 let uid = firebase.auth().currentUser.uid;
@@ -92,28 +92,28 @@ export default {
                         let a1 = [];
                         snapshot.forEach(item => {
                             a1.push({ ...item.data(), id: item.id });
-                            console.log(item.data())
+                            // console.log(item.data())
 
-                            console.log("computedRoomsMetrix: ",computedRoomsMetrix)
+                            // console.log("computedRoomsMetrix: ",computedRoomsMetrix)
 
                             Object.keys(computedRoomsMetrix).forEach((type, index0) => {
 
-                              console.log(type)
+                              // console.log(type)
                               let roomItem = computedRoomsMetrix[type]
 
-                              console.log("roomItem",roomItem)
+                              // console.log("roomItem",roomItem)
 
                                 if (item.data().roomName == type) {
 
                                     Object.keys(roomItem).forEach( room => {
 
-                                        console.log("--------------> room: ",room)
+                                        // console.log("--------------> room: ",room)
 
                                         let roomDates = roomItem[room]
 
                                         Object.keys(roomDates).forEach( (date1,index1) => {
 
-                                          // console.log("date1: ", date1)
+                                          // // console.log("date1: ", date1)
 
                                           if(date1 != 0){
 
@@ -125,16 +125,16 @@ export default {
                                             let coutMdf = new Date(cout.getFullYear(),cout.getMonth(),cout.getDate())
 
 
-                                            // console.log(cinMdf.getTime() <= loopDay.getTime(),coutMdf.getTime() >= loopDay.getTime())
+                                            // // console.log(cinMdf.getTime() <= loopDay.getTime(),coutMdf.getTime() >= loopDay.getTime())
 
                                             if(cinMdf.getTime() <= loopDay.getTime() && coutMdf.getTime() >= loopDay.getTime()){
 
-                                              console.log("room dates: ",roomDates[date1])
+                                              // console.log("room dates: ",roomDates[date1])
 
 
                                               if(roomDates[date1][0].status == "booked" || roomDates[date1][0].status == "stayedover" ){
 
-                                                console.log(room," unavailable on : ",loopDay)
+                                                // console.log(room," unavailable on : ",loopDay)
                                                 bkdRms.push({id:room,status:"booked"})
 
                                               }else{
@@ -158,19 +158,19 @@ export default {
 
                             })
 
-                            // console.log("ocpdRms:",ocpdRms)
+                            // // console.log("ocpdRms:",ocpdRms)
 
                             let uniqueRmVal = ocpdRms.filter( orm => (!bkdRms.some( brm => (brm.id == orm.id))))
                             let remRooms = []
 
-                            console.log("uniqueRmVal",uniqueRmVal)
+                            // console.log("uniqueRmVal",uniqueRmVal)
 
                             remRooms = uniqueRmVal.filter((thing, index, self) =>
                               index === self.findIndex((t) => (
                                 t.id === thing.id && t.status === thing.status
                               ))
                             )
-                            // console.log("tstArr",tstArr)
+                            // // console.log("tstArr",tstArr)
                             
                             // const map = new Map();
 
@@ -184,14 +184,14 @@ export default {
                             //     }
                                
                             // }
-                            console.log("remRooms",remRooms)
+                            // console.log("remRooms",remRooms)
                             this.remainingRooms = []
                             this.remainingRooms.push({...remRooms})
                             
 
                         });
                         
-                        console.log("fetch completed");
+                        // console.log("fetch completed");
                     });
             }
             return this.$store.state.showRoomSelectionModal;
@@ -205,23 +205,23 @@ export default {
         },
 
         addRoomForBooking(event) {
-            // console.log(event.target);
+            // // console.log(event.target);
 
             let roomId = event.target.id;
             this.selectedRoomId = roomId;
             // let roomSelected = this.selectedRooms;
-            console.log("room id: ", roomId);
-            // console.log(roomSelected);
+            // console.log("room id: ", roomId);
+            // // console.log(roomSelected);
 
             let remRm = this.remainingRooms[0];
 
             let newRem = [];
-            console.log(remRm[0])
+            // console.log(remRm[0])
 
             Object.values(remRm).forEach(item => {
-              console.log(item.id,roomId)
+              // console.log(item.id,roomId)
                 if (item.id == roomId) {
-                  console.log("room found")
+                  // console.log("room found")
                     if (item.status == "selected") {
                         this.roomAddedCount--;
                         item.status = "available";
@@ -236,7 +236,7 @@ export default {
                 }
 
                 newRem.push({...item});
-                // console.log({...item})
+                // // console.log({...item})
             });
 
             this.remainingRooms.push(newRem)
@@ -250,7 +250,7 @@ export default {
             Object.values(this.remainingRooms[0]).forEach(item => {
                 
                 if (item.status == "selected") {
-                    console.log(item)
+                    // console.log(item)
                     selRooms.push(item);
                 }
             });
@@ -259,7 +259,7 @@ export default {
 
             let bookingMetrix = store.state.computedRoomsMetrix;
 
-            // console.log(bookingMetrix)
+            // // console.log(bookingMetrix)
 
 
 

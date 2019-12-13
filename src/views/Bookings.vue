@@ -91,7 +91,7 @@ export default {
   },
   methods:{
     showBookingDet(e){
-      console.log(e)
+      // console.log(e)
       store.commit("setBookingStatCanvasStatus",true);
     },
     showDetailsCanvas: function(){
@@ -99,7 +99,7 @@ export default {
     },
     showBookedDate(dt){
       let dat = new Date(dt.seconds * 1000)
-      console.log(dat)
+      // console.log(dat)
       return dat.getDate()+"/"+dat.getMonth()+"/"+dat.getFullYear()
     },
     calculateNumDays(d1,d2){
@@ -123,9 +123,9 @@ export default {
     .where("hotelId","==",firebase.auth().currentUser.uid)
     .get()
     .then( snapshot => {
-      console.log(snapshot)
+      // console.log(snapshot)
       snapshot.forEach( bkng => {
-        console.log(bkng.data());
+        // console.log(bkng.data());
         this.bookings.push(bkng.data());
       })
     })

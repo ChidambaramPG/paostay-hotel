@@ -126,10 +126,10 @@ export default {
             .createUserWithEmailAndPassword(this.email, this.password)
             .then(
               function(user) {
-                console.log("account has been created");
+                // console.log("account has been created");
               },
               function(err) {
-                console.log(err);
+                // console.log(err);
               }
             );
         }

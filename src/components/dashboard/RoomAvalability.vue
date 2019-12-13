@@ -84,11 +84,11 @@ export default {
 
             this.bookings.forEach((item) => {
 
-              // console.log("------------"+item.roomTypeId+"------------")
+              // // console.log("------------"+item.roomTypeId+"------------")
 
                 if (item.roomTypeId == typeId) {
 
-                  // console.log("room type found")
+                  // // console.log("room type found")
 
                     item.rooms.forEach(item2 => {
 
@@ -120,7 +120,7 @@ export default {
             .then(snapshot => {
 
                 snapshot.forEach(item => {
-                    // console.log("room: ", item);
+                    // // console.log("room: ", item);
                     this.roomStatus.push({ ...item.data(), id: item.id });
                 });
 
@@ -141,13 +141,13 @@ export default {
                 let rooms = this.roomStatus;
                 let bookings = this.bookings;
 
-                // console.log(rooms)
-                // console.log(bookings)
+                // // console.log(rooms)
+                // // console.log(bookings)
 
                 let roomBookingMetrix = []
 
-                // console.log(this.yearSelected)
-                // console.log(this.monthSelected)
+                // // console.log(this.yearSelected)
+                // // console.log(this.monthSelected)
 
                 let numDates = new Date(this.yearSelected,this.monthSelected,0).getDate();
 
@@ -177,7 +177,7 @@ export default {
 
                                         let chknDate = new Date(checkinDateWthTime.toDateString())
                                         // let chknDate = new Date(yrChkn,monthChkn,dayChkn)
-                                        // console.log("-----chknDate: ",chknDate)
+                                        // // console.log("-----chknDate: ",chknDate)
 
                                         let checkoutDateWthTime = new Date(booking.checkoutDate.seconds * 1000)
                                         // let yrChkt = checkoutDateWthTime.getFullYear();
@@ -185,13 +185,13 @@ export default {
                                         // let dayChkt = checkoutDateWthTime.getDay();
                                         let chktDate = new Date(checkoutDateWthTime.toDateString())
                                         // let chktDate = new Date(yrChkt,monthChkt,dayChkt)
-                                        // console.log("-----chktDate: ",chktDate)
+                                        // // console.log("-----chktDate: ",chktDate)
 
                                         if( roomDate.getTime() >= chknDate.getTime() &&  roomDate.getTime() <= chktDate.getTime()){
 
                                             if( bookedRoom.id == allAvlRms && booking.roomTypeId == room.roomTypeId){
-                                                // console.log("chknDate: ",chknDate)
-                                                // console.log("roomDate: ",roomDate)
+                                                // // console.log("chknDate: ",chknDate)
+                                                // // console.log("roomDate: ",roomDate)
                                                 roomBookingMetrix.push({
                                                     roomType:room.roomTypeId,
                                                     roomName:room.roomName,
@@ -217,7 +217,7 @@ export default {
 
                 });
 
-                console.log("roomBookingMetrix: ",roomBookingMetrix)
+                // console.log("roomBookingMetrix: ",roomBookingMetrix)
                 this.roomStatMetrix = roomBookingMetrix;
                 
             });

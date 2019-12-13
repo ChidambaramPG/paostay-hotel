@@ -19,7 +19,7 @@
           <tbody>
             <tr v-for="(room,index) in getRoomTypes" :key="index">
               <td>
-                <img v-for="rmId in roomImage" v-if="rmId['id'] == index" :src="rmId['image']" class="room-image" />
+                <img :key="ind2" v-for="(rmId,ind2) in roomImage" v-if="rmId['id'] == index" :src="rmId['image']" class="room-image" />
               </td>
               <td>{{room.roomName}}</td>
               <td>{{room.roomType}}</td>
@@ -70,15 +70,15 @@ export default {
   },
   computed:{
     getRoomTypes(){
-      console.log("setting new rooms")
-      console.log(store.state.roomTypes)
-      console.log("----------")
+      // console.log("setting new rooms")
+      // console.log(store.state.roomTypes)
+      // console.log("----------")
       return store.state.roomTypes;
     }
   },
   methods:{
     setRoomStatus:function(event){
-      console.log(event)
+      // console.log(event)
       let dbRef = firebase.firestore().collection("Rooms");
       if(event.target.checked){
       
@@ -96,7 +96,7 @@ export default {
     onFileChange(e) {
       var files = e.target.files || e.dataTransfer.files;
       let rmId = e.target.id;
-      console.log(rmId)
+      // console.log(rmId)
       if (!files.length)
         return;
       this.createImage(files[0],rmId);
@@ -135,14 +135,14 @@ export default {
         upldRef.put(file)
         .then( function(e) {
 
-          console.log("file upload completed")
-          console.log(e)
+          // console.log("file upload completed")
+          // console.log(e)
 
           if(e.state == "success"){
 
-            // console.log(upldRef.getDownloadURL())
+            // // console.log(upldRef.getDownloadURL())
             // upldRef.getDownloadURL().then( t=> {
-            //   console.log(t)
+            //   // console.log(t)
             // })
 
             upldRef.getDownloadURL().then( imgLnk => {
@@ -150,15 +150,15 @@ export default {
               imgUploadData["data"] = imgLnk;
 
               frRef.collection("RoomImages").add(imgUploadData).then( function(e) {
-                console.log(e);
-                console.log("data saved");
+                // console.log(e);
+                // console.log("data saved");
               })
               
             });
 
             // frRef.collection("RoomImages").doc(firebase.auth().currentUser.uid).collection(imgUploadData['roomId']).add(imgUploadData).then( function(e) {
-            //   console.log(e);
-            //   console.log("data saved");
+            //   // console.log(e);
+            //   // console.log("data saved");
             // })
 
             
@@ -169,7 +169,7 @@ export default {
         })
       }
 
-      console.log(reader)
+      // console.log(reader)
     },
   },
   created(){
@@ -179,7 +179,7 @@ export default {
       dbRef.where("hotelId","==",user.uid).onSnapshot(function(snapshot){
           roomTypes = [];
           snapshot.forEach(item => {
-              console.log(item)
+              // console.log(item)
               roomTypes.push({...item.data(),"roomId":item.id})
           })
           store.commit("setRoomTypes",roomTypes);

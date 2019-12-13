@@ -96,8 +96,8 @@ export default {
     .get()
     .then( res => {
         res.forEach((booking,index) => {
-            console.log(booking.data());
-            console.log(booking.id);
+            // console.log(booking.data());
+            // console.log(booking.id);
             // this.bookings.push(booking)
 
             let chkDt = new Date(booking.data().checkinDate.seconds * 1000)

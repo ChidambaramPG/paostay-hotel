@@ -22,7 +22,7 @@
                                     <div class="form-group mg-b-10">
                                         <label for>Room Type</label>
                                         <select v-model="selectedRoomTypeIndex" name id class="form-control rooms">
-                                            <option v-for="(type,index) in roomTypes" :value="index" :id="index">{{type.roomName}}</option>
+                                            <option :key="index" v-for="(type,index) in roomTypes" :value="index" :id="index">{{type.roomName}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group mg-b-10">
@@ -71,7 +71,7 @@ export default {
     },
     computed: {
         showModal() {
-            console.log("room component: ", this.$store.state.showNewRoomsModal);
+            // console.log("room component: ", this.$store.state.showNewRoomsModal);
             return this.$store.state.showNewRoomsModal;
         }
     },
@@ -81,7 +81,7 @@ export default {
         },
         addNewRoom() {
 
-          console.log(this.roomName,this.selectedRoomTypeIndex,this.totalRooms,this.price)
+          // console.log(this.roomName,this.selectedRoomTypeIndex,this.totalRooms,this.price)
 
           if (this.roomName != "" && this.totalRooms != 0 && this.price != 0) {
 
@@ -106,7 +106,7 @@ export default {
                   occupied: [],
                   status: "active"
               }).then(function(res) {
-                  console.log(res)
+                  // console.log(res)
                   store.commit("setNewRoomsModalStatus", false);
               });
 
@@ -120,7 +120,7 @@ export default {
         dbRef.get().then((response) => {
             let types = []
             response.forEach((item) => {
-                console.log(item.data())
+                // console.log(item.data())
                 types.push({ ...item.data(), id: item.id })
             })
             this.roomTypes = types;

@@ -117,7 +117,7 @@ import Stayover from "../components/diary/Stayover.vue";
         },
         methods:{
             changeDiaySection(sec){
-                console.log("section: ",sec)
+                // console.log("section: ",sec)
                 store.commit("setDiarySection",sec)
             }
         }

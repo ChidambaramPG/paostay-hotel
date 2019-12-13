@@ -59,10 +59,10 @@ export default {
   },
   computed: {
     showModal() {
-      console.log(
-        "amaenity component: ",
-        this.$store.state.showNewRuleModal
-      );
+      // console.log(
+      //   "amaenity component: ",
+      //   this.$store.state.showNewRuleModal
+      // );
       return this.$store.state.showNewRuleModal;
     }
   },
@@ -71,7 +71,7 @@ export default {
       store.commit("setNewRuleModalStatus", false);
     },
     addNewAmenity() {
-      console.log("adding new amenity");
+      // console.log("adding new amenity");
     }
   }
 };

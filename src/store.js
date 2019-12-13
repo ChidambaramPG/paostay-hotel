@@ -27,45 +27,46 @@ export default new Vuex.Store({
     showChangeBookingStatusModal:false,
     statusChangehangeBookingId:0,
     showBookingStatCanvas:false,
-    diarySection:"arrival"
+    diarySection:"arrival",
+    allBookings:[]
   },
   mutations: {
     SET_REG_FORM_STEP: (state, payload) => {
-      console.log(payload)
+      // console.log(payload)
       state.regFormPage = payload;
     },
     INCR_REG_FORM_STEP: state => {
-      console.log("INCR_REG_FORM_STEP");
+      // console.log("INCR_REG_FORM_STEP");
       state.regFormPage++;
     },
     DECR_REG_FORM_STEP: state => {
-      console.log("DECR_REG_FORM_STEP");
+      // console.log("DECR_REG_FORM_STEP");
       state.regFormPage--;
     },
     PUSH_REG_FORM_FIELDS: (state, payload) => {
-      console.log(payload);
+      // console.log(payload);
       state.regFormFields = { ...state.regFormFields , ...payload };
     },
 
 // ---------------------------- Modals ----------------------------
     setNewRoomsModalStatus: (state, payload) => {
-      console.log(payload);
+      // console.log(payload);
       state.showNewRoomsModal = payload;
     },
     setNewAmenityModalStatus:(state, payload) => {
-      console.log(payload);
+      // console.log(payload);
       state.showNewAmenityModal = payload;
     },
     setNewCheckinModalStatus:(state, payload) => {
-      console.log(payload);
+      // console.log(payload);
       state.showNewCheckinModal = payload;
     },
     setNewRuleModalStatus:(state, payload) => {
-      console.log(payload);
+      // console.log(payload);
       state.showNewRuleModal = payload;
     },
     setRoomSelectionModalStatus:(state, payload) => {
-      console.log(payload);
+      // console.log(payload);
       state.showRoomSelectionModal = payload;
     },
     setChangeBookingStatusModalStatus: (state,payload) => {
@@ -79,29 +80,29 @@ export default new Vuex.Store({
 
 // ---------------------------- Accomodation ----------------------------
     setSelectedRoomAvailablty:(state, payload) => {
-      console.log(payload);
+      // console.log(payload);
       state.selectedRoomAvailablty = payload;
     },
 
     setSelectedMonth:(state, payload) => {
-      console.log("selected month: ",payload);
+      // console.log("selected month: ",payload);
       state.selectedMonth = payload;
     },
     setSelectedYear:(state, payload) => {
-      console.log(payload);
+      // console.log(payload);
       state.selectedYear = payload;
     },
     setComputedRoomsMetrix:(state,payload) => {
-      console.log("computed array: ",payload)
+      // console.log("computed array: ",payload)
       state.computedRoomsMetrix = payload;
     },
     setStatusChangehangeBookingId:(state,payload) => {
       state.statusChangehangeBookingId = payload;
     },
     setRoomTypes: (state,payload) => {
-      console.log("setting new rooms")
-      console.log(payload)
-      console.log("----------")
+      // console.log("setting new rooms")
+      // console.log(payload)
+      // console.log("----------")
       state.roomTypes = payload;
     },
 // ---------------------------- Diary ----------------------------
@@ -122,11 +123,11 @@ export default new Vuex.Store({
       state.showNewDiscountModal = payload;
     },
     setAmenities: (state,payload) => {
-      console.log(payload)
+      // console.log(payload)
       state.amenities = payload;
     },
     setSelectedBooking: (state,payload) =>{
-      console.log("setting booking", payload)
+      // console.log("setting booking", payload)
       state.selectedBooking = payload;
     },
 
@@ -139,16 +140,16 @@ export default new Vuex.Store({
         .get()
         .then(function(querySnapshot) {
           querySnapshot.forEach(function(doc) {
-            console.log(doc.id, " => ", doc.data());
+            // console.log(doc.id, " => ", doc.data());
             state.amenities.push(doc);
           });
         })
         .catch(function(error) {
-          console.log("Error getting document:", error);
+          // console.log("Error getting document:", error);
         });
     },
     SET_HOTEL_DETAILS: (state) => {
-      console.log("SET_HOTEL_DETAILS");
+      // console.log("SET_HOTEL_DETAILS");
 
       let db = firebase.firestore();
       let btRef = db.collection("Hotels");
@@ -161,17 +162,21 @@ export default new Vuex.Store({
             .doc(userId)
             .set(data)
             .then(function() {
-              console.log("success");
+              // console.log("success");
               router.replace('dashboard');
             })
             .catch(function(error) {
               console.error("Error writing document: ", error);
             });
         } else {
-          console.log("not logged in");
+          // console.log("not logged in");
         }
       });
 
+    },
+
+    setBookings: (state,payload) => {
+      state.allBookings = payload;
     }
   },
   actions: {
@@ -180,6 +185,19 @@ export default new Vuex.Store({
     },
     GET_ROOM_TYPES: async ({commit}) => {
 
+    },
+    getAllBookings: ({state,commit}) => {
+      firebase.firestore().collection("Booking").where('hotelId','==',firebase.auth().currentUser.uid).get()
+      .then( resp => {
+        let bkngs = [];
+        
+        resp.forEach( item => {
+          console.log(item.data())
+          bkngs.push({...item.data(),bid:item.id})
+        })
+        commit('setBookings',bkngs);
+
+      })
     }
   },
 

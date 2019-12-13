@@ -102,9 +102,9 @@ export default {
     // .doc("RoomImages/"+firebase.auth().currentUser.uid)
     // .onSnapshot( snapshot => {
 
-    //   console.log(snapshot)
+    //   // console.log(snapshot)
     //   // snapshot.forEach( img => {
-    //   //   console.log(img)
+    //   //   // console.log(img)
     //   // })
     // })
     firebase.firestore()
@@ -113,9 +113,9 @@ export default {
     .get()
     .then( snapshot => {
       this.images = []
-      // console.log(snapshot)
+      // // console.log(snapshot)
       snapshot.forEach( img => {
-        console.log(img.data())
+        // console.log(img.data())
         let dt = img.data();
         this.images.push(dt)
       })

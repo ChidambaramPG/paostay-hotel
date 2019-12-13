@@ -117,13 +117,13 @@ export default {
   },
   methods: {
     decrRegPage: function() {
-      console.log("decrementing");
+      // console.log("decrementing");
       if (this.regFormPage > 1) {
         this.$store.commit("SET_REG_FORM_STEP", 3);
       }
     },
     incrRegPage: function() {
-      console.log("incrementing");
+      // console.log("incrementing");
       let areaInfoFields = {
         airport: this.airport,
         railwayStation: this.railwayStation,

@@ -77,7 +77,7 @@ export default {
 
     btRef.doc(user.uid).onSnapshot((snapshot) => {
       let ament = snapshot.data()["amenities"];
-      console.log(ament)
+      // console.log(ament)
       store.commit("setAmenities",ament);
     });
   },

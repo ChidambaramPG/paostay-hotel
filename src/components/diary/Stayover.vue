@@ -91,7 +91,7 @@ export default {
     .get()
     .then( res => {
         res.forEach(booking => {
-            console.log(booking);
+            // console.log(booking);
             this.bookings.push(booking)
         })
     })

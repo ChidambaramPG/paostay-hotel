@@ -105,9 +105,9 @@ export default {
     };
   },
   created() {
-    console.log("requests fetching");
+    // console.log("requests fetching");
     let uid = firebase.auth().currentUser.uid;
-    console.log("uid", uid);
+    // console.log("uid", uid);
 
     firebase
       .firestore()
@@ -115,10 +115,10 @@ export default {
       .where("hotelId", "==", uid)
       .where("status","==","pending")
       .onSnapshot(snapshot => {
-        console.log("pending requests: ",snapshot);
+        // console.log("pending requests: ",snapshot);
         this.pendingRequests = [];
         snapshot.forEach(item => {
-          // console.log(item);
+          // // console.log(item);
           this.pendingRequests.push({ ...item.data(), id: item.id });
         });
       });
@@ -128,7 +128,7 @@ export default {
     calculateDateDiffeence(d1, d2) {
       let date1 = new Date(d1.seconds * 1000);
       let date2 = new Date(d2.seconds * 1000);
-      console.log(d1);
+      // console.log(d1);
       let timeDiff = date2.getTime() - date1.getTime();
       let DaysDiff = timeDiff / (1000 * 3600 * 24);
 
@@ -136,7 +136,7 @@ export default {
     },
 
     dateConvert(d1) {
-      console.log(d1);
+      // console.log(d1);
       let date = new Date();
       if (d1 != undefined) {
         date = new Date(d1.seconds * 1000);
@@ -169,9 +169,9 @@ export default {
     },
 
     acceptBookingRequest(e){
-      console.log(e.target.id);
+      // console.log(e.target.id);
       let bookingIndex = e.target.id;
-      console.log("request selected for assigning room")
+      // console.log("request selected for assigning room")
       store.commit("setSelectedBooking",this.pendingRequests[bookingIndex]);
       store.commit("setRoomSelectionModalStatus",true);
     }

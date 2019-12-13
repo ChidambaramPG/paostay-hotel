@@ -88,10 +88,10 @@ export default {
   },
   computed: {
     showModal() {
-      console.log(
-        "amaenity component: ",
-        this.$store.state.showNewCheckinModal
-      );
+      // console.log(
+      //   "amaenity component: ",
+      //   this.$store.state.showNewCheckinModal
+      // );
       return this.$store.state.showNewCheckinModal;
     }
   },
@@ -100,7 +100,7 @@ export default {
       store.commit("setNewCheckinModalStatus", false);
     },
     addNewAmenity() {
-      console.log("adding new amenity");
+      // console.log("adding new amenity");
     }
   }
 };

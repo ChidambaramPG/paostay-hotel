@@ -70,10 +70,10 @@ export default {
   },
   computed: {
     showModal() {
-      console.log(
-        "amaenity component: ",
-        this.$store.state.showNewDiscountModal
-      );
+      // console.log(
+      //   "amaenity component: ",
+      //   this.$store.state.showNewDiscountModal
+      // );
       return this.$store.state.showNewDiscountModal;
     }
   },
@@ -82,7 +82,7 @@ export default {
       store.commit("setNewDiscountModalStatus", false);
     },
     addNewAmenity() {
-      console.log("adding new amenity");
+      // console.log("adding new amenity");
     }
   }
 };

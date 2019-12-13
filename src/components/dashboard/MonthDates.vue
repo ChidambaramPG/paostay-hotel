@@ -3,7 +3,7 @@
         <div v-for="(rooms,index1) in roomsMetrix" :key="index1">
             <tr v-for="(days,index2) in rooms" :key="index2" v-if="index2 != 0">
                 <td class="room-name">{{index1}} #{{index2}}</td>
-                <td v-for="(a,i) in days" v-if="i !=0">
+                <td v-for="(a,i) in days" v-if="i !=0" :key="i">
                     <button href="#" class="btn btn-success rooms-btn" data-toggle="modal" data-target="#reservation" v-if="a[0].status !=undefined && a[0].status == 'available'">{{a[0].date}}</button>
                     <button href="#" class="btn btn-primary rooms-btn" data-toggle="modal" data-target="#reservation" v-if="a[0].status !=undefined && a[0].status == 'booked'" :id="a[0].bkIndex" @click="(event)=>changeBookingStatusMethod(event)">{{a[0].date}}</button>
                     <button href="#" :class="'btn btn-warning rooms-btn ' + a[0].status" data-toggle="modal" data-target="#reservation" v-if="a[0].status !=undefined && a[0].status == 'stayedover'" :id="a[0].bkIndex" @click="(event)=>changeBookingStatusMethod(event)">{{a[0].date}}</button>
@@ -44,7 +44,7 @@ export default {
         this.selectedMonth = store.state.selectedMonth;
         this.selectedYear = store.state.selectedYear;
 
-        console.log("created")
+        // console.log("created")
 
         let uid = firebase.auth().currentUser.uid;
 
@@ -59,7 +59,7 @@ export default {
                     this.roomTypes.push({ ...item.data(), id: item.id });
                 });
 
-                console.log("rooms obtained")
+                // console.log("rooms obtained")
 
             });
 
@@ -69,7 +69,7 @@ export default {
             .where("hotelId", "==", uid)
             .onSnapshot(snapshot => {
 
-                console.log("bookings obtained")
+                // console.log("bookings obtained")
 
                 snapshot.forEach(item => {
 
@@ -99,13 +99,13 @@ export default {
                             let rooms = booking.rooms;
                             let roomType = booking.roomTypeId;
 
-                            // console.log("=======================> " + new Date(booking.bookedDate.seconds * 1000))
+                            // // console.log("=======================> " + new Date(booking.bookedDate.seconds * 1000))
 
                             rooms.forEach(bookedRoom => {
 
                                 allRooms.forEach(allAvlRms => {
 
-                                    // console.log("room: ",allAvlRms)
+                                    // // console.log("room: ",allAvlRms)
 
                                     for (let i = 1; i <= numDates; i++) {
 
@@ -121,7 +121,7 @@ export default {
 
 
                                         if(allAvlRms == 6){
-                                            // console.log(chknDate,chktDate,roomDate)
+                                            // // console.log(chknDate,chktDate,roomDate)
                                         }
                                         
 
@@ -129,7 +129,7 @@ export default {
 
                                         if ( chknDate.getTime() <= roomDate.getTime() && chktDate.getTime() >= roomDate.getTime() ) {
 
-                                            // console.log(roomDate,chknDate,chktDate)
+                                            // // console.log(roomDate,chknDate,chktDate)
 
                                             if (bookedRoom.id == allAvlRms && booking.roomTypeId == room.roomTypeId) {
 
@@ -189,7 +189,7 @@ export default {
                 roomTypes1.forEach(type => {
 
                     if (!tempDateArr[type.roomName]) {
-                        console.log("creatng new index for", type.roomName)
+                        // console.log("creatng new index for", type.roomName)
                         tempDateArr[type.roomName] = []
                     }
 
@@ -222,7 +222,7 @@ export default {
 
                                 if (tmpDate.getTime() == roomDate.getTime() && type.roomTypeId == item.roomType && item.roomNum == rm) {
 
-                                    console.log("statue : ", item.status)
+                                    // console.log("statue : ", item.status)
                                     tempDateArr[type.roomName][rm][i][0].status = item.status;
                                     tempDateArr[type.roomName][rm][i][0].bkIndex = item.bookingIndex;
 
@@ -269,7 +269,7 @@ export default {
             let datesAr = []
             if (this.bookings.length > 0) {
 
-                console.log("-------------Booking found------------")
+                // console.log("-------------Booking found------------")
 
                 for (let i = 0; i < days; i++) {
                     for (let j = 0; j < this.bookings.length; j++) {
@@ -284,7 +284,7 @@ export default {
                     }
 
                 }
-                console.log(datesAr)
+                // console.log(datesAr)
 
             } else {
 
@@ -299,7 +299,7 @@ export default {
         },
         setRoomStats(roomStat) {
 
-            console.log("stats: ", this.isStatUpdated)
+            // console.log("stats: ", this.isStatUpdated)
 
             this.roomStatus = []
 
@@ -311,7 +311,7 @@ export default {
             roomTypes1.forEach(type => {
 
                 if (!tempDateArr[type.roomTypeId]) {
-                    console.log("creatng new index for", type.roomTypeId)
+                    // console.log("creatng new index for", type.roomTypeId)
                     tempDateArr[type.roomTypeId] = []
                 }
 
@@ -335,7 +335,7 @@ export default {
                             let tmpDate = new Date(item.date);
 
                             if (tmpDate == roomDate) {
-                                console.log("date: ", i)
+                                // console.log("date: ", i)
                                 tempDateArr[type.roomTypeId][rm][i].push({
                                     date: i,
                                     status: "booked",
@@ -362,7 +362,7 @@ export default {
 
             })
 
-            console.log("tempDateArr: ", tempDateArr)
+            // console.log("tempDateArr: ", tempDateArr)
             this.isStatUpdated = true;
 
 
@@ -373,15 +373,15 @@ export default {
         },
         changeBookingStatusMethod(event) {
 
-            console.log(event)
+            // console.log(event)
             let bkngs = this.bookings;
-            console.log(bkngs[event.target.id])
+            // console.log(bkngs[event.target.id])
             store.commit("setSelectedBooking", bkngs[event.target.id])
             store.commit("setChangeBookingStatusModalStatus", true)
 
         },
         changeMetrixOnMonthChange(){
-            console.log("chnging again")
+            // console.log("chnging again")
             let uid = firebase.auth().currentUser.uid;
 
             firebase
@@ -395,14 +395,14 @@ export default {
                         this.roomTypes.push({ ...item.data(), id: item.id });
                     });
 
-                    console.log("rooms obtained")
+                    // console.log("rooms obtained")
                     firebase
                 .firestore()
                 .collection("Booking")
                 .where("hotelId", "==", uid)
                 .onSnapshot(snapshot => {
 
-                    console.log("bookings obtained")
+                    // console.log("bookings obtained")
 
                     snapshot.forEach(item => {
 
@@ -432,13 +432,13 @@ export default {
                                 let rooms = booking.rooms;
                                 let roomType = booking.roomTypeId;
 
-                                console.log("=======================> " + new Date(booking.bookedDate.seconds * 1000))
+                                // console.log("=======================> " + new Date(booking.bookedDate.seconds * 1000))
 
                                 rooms.forEach(bookedRoom => {
 
                                     allRooms.forEach(allAvlRms => {
 
-                                        console.log("room: ",allAvlRms)
+                                        // console.log("room: ",allAvlRms)
 
                                         for (let i = 1; i <= numDates; i++) {
 
@@ -454,7 +454,7 @@ export default {
 
 
                                             if(allAvlRms == 6){
-                                                console.log(chknDate,chktDate,roomDate)
+                                                // console.log(chknDate,chktDate,roomDate)
                                             }
                                             
 
@@ -462,7 +462,7 @@ export default {
 
                                             if ( chknDate.getTime() <= roomDate.getTime() && chktDate.getTime() >= roomDate.getTime() ) {
 
-                                                // console.log(roomDate,chknDate,chktDate)
+                                                // // console.log(roomDate,chknDate,chktDate)
 
                                                 if (bookedRoom.id == allAvlRms && booking.roomTypeId == room.roomTypeId) {
 
@@ -522,7 +522,7 @@ export default {
                     roomTypes1.forEach(type => {
 
                         if (!tempDateArr[type.roomName]) {
-                            console.log("creatng new index for", type.roomName)
+                            // console.log("creatng new index for", type.roomName)
                             tempDateArr[type.roomName] = []
                         }
 
@@ -555,7 +555,7 @@ export default {
 
                                     if (tmpDate.getTime() == roomDate.getTime() && type.roomTypeId == item.roomType && item.roomNum == rm) {
 
-                                        console.log("statue : ", item.status)
+                                        // console.log("statue : ", item.status)
                                         tempDateArr[type.roomName][rm][i][0].status = item.status;
                                         tempDateArr[type.roomName][rm][i][0].bkIndex = item.bookingIndex;
 

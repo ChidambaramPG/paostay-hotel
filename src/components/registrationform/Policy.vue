@@ -82,13 +82,13 @@ export default {
   },
   methods: {
     decrRegPage: function() {
-      console.log("decrementing");
+      // console.log("decrementing");
       if (this.regFormPage > 1) {
         this.$store.commit("SET_REG_FORM_STEP", 6);
       }
     },
     incrRegPage: function() {
-      console.log("incrementing");
+      // console.log("incrementing");
 
       if (this.regFormPage < 8) {
         this.$store.commit("SET_REG_FORM_STEP", 8);
@@ -104,7 +104,7 @@ export default {
       this.policyDesc = null;
     },
     finishRegPage: function() {
-      console.log("finishing");
+      // console.log("finishing");
 
       // if (this.regFormPage < 8) {
         this.$store.commit("PUSH_REG_FORM_FIELDS", { policy: this.policies });

@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     setSelectedMonth: (e) => {
-      console.log(e.target.id)
+      // console.log(e.target.id)
       store.commit("setSelectedMonth",parseInt(e.target.id))
     }
   },

@@ -57,7 +57,7 @@ export default {
   },
   computed: {
     showModal() {
-      console.log("showChangeBookingStatusModal component: ", this.$store.state.showChangeBookingStatusModal);
+      // console.log("showChangeBookingStatusModal component: ", this.$store.state.showChangeBookingStatusModal);
       return this.$store.state.showChangeBookingStatusModal;
     }
   },
@@ -71,7 +71,7 @@ export default {
           status:this.bookingStatus
         });
         store.commit("setChangeBookingStatusModalStatus",false);
-        console.log(this.bookingStatus)
+        // console.log(this.bookingStatus)
         // this.$router.go()
       }
   }

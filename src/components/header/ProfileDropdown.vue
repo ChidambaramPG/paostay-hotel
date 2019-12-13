@@ -26,7 +26,7 @@ export default {
     name:"ProfileDopdown",
     methods:{
         logout(){
-            console.log("signing out")
+            // console.log("signing out")
             firebase.auth().signOut().then( () => {
                 this.$router.push("/")
             })  

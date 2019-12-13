@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     signInMethod: function() {
-      console.log(router);
+      // console.log(router);
       var db = firebase.firestore();
 
       if (this.email && this.password) {
@@ -89,22 +89,22 @@ export default {
                   .auth()
                   .signInWithEmailAndPassword(this.email, this.password)
                   .then(user => {
-                    console.log(user.user);
+                    // console.log(user.user);
                     const ChekIfHotelExst = false;
                     var hotelsRef = db.collection("Hotels").doc(user.user.uid);
                     hotelsRef
                       .get()
                       .then(function(doc) {
                         if (doc.exists) {
-                          console.log("Document data:", doc.data());
+                          // console.log("Document data:", doc.data());
                           router.replace("dashboard");
                         } else {
-                          console.log("No such document!");
+                          // console.log("No such document!");
                           router.replace("register");
                         }
                       })
                       .catch(function(error) {
-                        console.log("Error getting document:", error);
+                        // console.log("Error getting document:", error);
                       });
 
                   });
@@ -123,7 +123,7 @@ export default {
     }
   },
   onCreate() {
-    console.log(this);
+    // console.log(this);
   }
 };
 </script>

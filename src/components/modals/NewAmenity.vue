@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     showModal() {
-      console.log("amaenity component: ", this.$store.state.showNewAmenityModal);
+      // console.log("amaenity component: ", this.$store.state.showNewAmenityModal);
       return this.$store.state.showNewAmenityModal;
     }
   },
@@ -64,7 +64,7 @@ export default {
           store.commit("setNewAmenityModalStatus",false);
       },
       addNewAmenity(){
-          console.log("adding new amenity")
+          // console.log("adding new amenity")
       }
   }
 

@@ -91,18 +91,18 @@ export default {
             .createUserWithEmailAndPassword(this.email, this.password)
             .then(
               function(user) {
-                console.log(user);
-                console.log(user.user.uid);
+                // console.log(user);
+                // console.log(user.user.uid);
                 firebase
                   .firestore()
                   .collection("HotelOwners")
                   .doc(user.user.uid)
                   .set(userDet);
-                console.log("account has been created");
+                // console.log("account has been created");
                 router.replace("register");
               },
               function(err) {
-                console.log(err);
+                // console.log(err);
               }
             );
         }
