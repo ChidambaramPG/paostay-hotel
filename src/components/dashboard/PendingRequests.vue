@@ -3,7 +3,7 @@
     <div class="card-header d-flex align-items-start justify-content-between">
       <h6 class="lh-5 mg-b-0">
         Pending Requests
-        <span class="badge badge-pill badge-primary">1</span>
+        <span class="badge badge-pill badge-primary">{{pendingRequests.length}}</span>
       </h6>
     </div>
     <ul class="list-group list-group-flush tx-13">

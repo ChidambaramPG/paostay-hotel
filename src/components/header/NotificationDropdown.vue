@@ -1,9 +1,9 @@
 <template>
   <div class="dropdown dropdown-notification">
-        <a href class="dropdown-link new-indicator" data-toggle="dropdown">
-          <i data-feather="bell"></i>
+        <!-- <a href class="dropdown-link new-indicator" data-toggle="dropdown">
+          <i class="fas fa-bell"></i>
           <span>2</span>
-        </a>
+        </a> -->
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-header">Notifications</div>
           <a href class="dropdown-item">

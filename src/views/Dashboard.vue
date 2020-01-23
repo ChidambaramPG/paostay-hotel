@@ -18,13 +18,13 @@
             <h4 class="mg-b-0 tx-spacing--1">Yesterday, Today And The Next Four Weeks</h4>
           </div>
           <div class="d-none d-md-block">
-            <button
+            <!-- <button
               class="btn btn-sm pd-x-15 btn-primary btn-uppercase"
               data-toggle="modal"
               data-target="#reservation"
             >
               <i data-feather="plus-circle"></i> Create a new reservation
-            </button>
+            </button> -->
           </div>
         </div>
         <div class="row row-xs">

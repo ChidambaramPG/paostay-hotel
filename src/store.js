@@ -28,7 +28,8 @@ export default new Vuex.Store({
     statusChangehangeBookingId:0,
     showBookingStatCanvas:false,
     diarySection:"arrival",
-    allBookings:[]
+    allBookings:[],
+    invoiceItem:[]
   },
   mutations: {
     SET_REG_FORM_STEP: (state, payload) => {
@@ -130,6 +131,9 @@ export default new Vuex.Store({
       // console.log("setting booking", payload)
       state.selectedBooking = payload;
     },
+    setInvoiceItem: (state,payload) => {
+      state.invoiceItem = payload;
+    },
 
 
 
@@ -192,7 +196,7 @@ export default new Vuex.Store({
         let bkngs = [];
         
         resp.forEach( item => {
-          console.log(item.data())
+          // console.log(item.data())
           bkngs.push({...item.data(),bid:item.id})
         })
         commit('setBookings',bkngs);

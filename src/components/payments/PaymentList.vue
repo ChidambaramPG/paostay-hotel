@@ -16,11 +16,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(booking,index) in getBookings" :key="index">
-                <td>{{dateConvert(booking.bookedDate)}}</td>
+              <tr v-for="(booking, index) in getBookings" :key="index">
+                <td>{{ dateConvert(booking.bookedDate) }}</td>
                 <th>3:30pm</th>
-                <td class="tx-success">{{booking.paymentType}}</td>
-                <td>{{booking.username}}</td>
+                <td class="tx-success">{{ booking.paymentType }}</td>
+                <td>{{ booking.username }}</td>
 
                 <td v-if="booking.paymentType == 'online'">
                   Payment Recieved
@@ -40,11 +40,11 @@
                   <!-- <a href="#recent-booking" class="off-canvas-menu">#10322</a> -->
                 </td>
                 <td>
-                  <a href="invoice.html" target="_blank">
-                    <i class="fas fa-file-invoice-dollar"></i>
+                  <a href="invoice" >
+                    <i class="fas fa-file-invoice-dollar" :id='index' @click.prevent="(event) => showInvoice(event)"></i>
                   </a>
                 </td>
-                <td class="tx-teal">₹{{booking.totalAmount}}</td>
+                <td class="tx-teal">₹{{ booking.totalAmount }}</td>
               </tr>
             </tbody>
           </table>
@@ -55,28 +55,37 @@
 </template>
 
 <script>
-import store from '../../store.js';
+import store from "../../store.js";
+import router from '../../router.js';
 export default {
   name: "PaymentList",
-  data(){
-      return{
-          bookingList:[],
-          bookingFetched:false
-      }
+  data() {
+    return {
+      bookingList: [],
+      bookingFetched: false
+    };
   },
   computed: {
-      getBookings(){
-          return store.state.allBookings
-      }
+    getBookings() {
+      return store.state.allBookings;
+    }
   },
-  created(){
-      if(this.getBookings.length<1 && this.bookingFetched == false){
-          store.dispatch('getAllBookings')
-      }
-      
+  created() {
+    if (this.getBookings.length < 1 && this.bookingFetched == false) {
+      store.dispatch("getAllBookings");
+    }
   },
   methods: {
-      dateConvert(d1) {
+      showInvoice(event){
+          let indx = event.target.id;
+          console.log(event)
+          let selectedItem = this.getBookings[indx];
+          console.log(selectedItem)
+          store.commit('setInvoiceItem',selectedItem);
+        router.push('/invoice');
+
+      },
+    dateConvert(d1) {
       // console.log(d1);
       let date = new Date();
       if (d1 != undefined) {
@@ -107,8 +116,8 @@ export default {
         " ";
 
       return conDt;
-    },
-  },
+    }
+  }
 };
 </script>
 

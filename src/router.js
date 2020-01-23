@@ -10,6 +10,7 @@ import Accomodation from "./views/Accomodation.vue";
 import Bookings from "./views/Bookings.vue";
 import Diary from "./views/Diary.vue";
 import Payments from './views/Payments.vue';
+import Invoice from './views/Invoice.vue';
 
 Vue.use(Router);
 
@@ -82,6 +83,14 @@ const router = new Router({
       path: "/payments",
       name: "payments",
       component: Payments,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/invoice",
+      name: "invoice",
+      component: Invoice,
       meta: {
         requiresAuth: true
       }

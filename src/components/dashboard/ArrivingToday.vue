@@ -3,7 +3,7 @@
     <div class="card-header d-flex align-items-start justify-content-between">
       <h6 class="lh-5 mg-b-0">
         Arriving Today
-        <span class="badge badge-pill badge-info">1/5</span>
+        <span class="badge badge-pill badge-info">{{arrivingTodayRequests.length}}</span>
       </h6>
     </div>
     <ul class="list-group list-group-flush tx-13">
@@ -175,7 +175,7 @@ export default {
             new Date().getMonth(),
             new Date().getDate()
           );
-          console.log(tdy.getTime(), arDt.getTime());
+          // console.log(tdy.getTime(), arDt.getTime());
 
           if (arDt.getTime() == tdy.getTime()) {
             this.arrivingTodayRequests.push({ ...item.data(), id: item.id });

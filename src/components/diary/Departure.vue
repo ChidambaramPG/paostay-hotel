@@ -61,11 +61,11 @@
             </small> -->
           </div>
           <div class="mg-t-25">
-            <button
+            <!-- <button
               data-toggle="modal"
               data-target="#action"
               class="btn btn-sm pd-x-15 btn-primary btn-uppercase mg-l-5"
-            >Check In</button>
+            >Check In</button> -->
           </div>
         </div>
       </li>
@@ -95,7 +95,7 @@ export default {
       let roomName = '';
       if(this.getRoomTypes.length >0){
         this.getRoomTypes.forEach(item => {
-          console.log(item.roomName,item.roomTypeId)
+          // console.log(item.roomName,item.roomTypeId)
           if(rid == item.roomTypeId){
             roomName = item.roomName;
           }
@@ -158,11 +158,11 @@ export default {
     .get()
     .then( res => {
         res.forEach(booking => {
-            console.log(booking);
+            // console.log(booking);
             let bkDt = new Date(booking.data().checkoutDate.seconds * 1000)
             let bokd = new Date(bkDt.getFullYear(),bkDt.getMonth(),bkDt.getDate())
 
-            if(bokd.getTime() > tday.getTime()){
+            if(bokd.getTime() == tday.getTime()){
                 this.bookings.push({...booking.data(),id:booking.id})
             }
             
